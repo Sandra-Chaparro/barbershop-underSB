@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Gallery from '../components/Gallery.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Gallery | MC the Barber" description="View the full photo gallery from MC the Barber at Señor Brims Barbershop in Allen, TX.">
+  <Navbar />
+
+  <main id="main-content">
+    <Gallery fullPage={true} />
+  </main>
+
+  <Footer />
+</Layout>
+
+<style is:global>
+  section[id] {
+    scroll-margin-top: 80px;
+  }
+</style>

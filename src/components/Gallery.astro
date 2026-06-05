@@ -2,6 +2,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+interface Props {
+  fullPage?: boolean;
+}
+
+const { fullPage = false } = Astro.props;
+
 const galleryDir = path.join(process.cwd(), 'public/images/gallery');
 const exclude = [/\.svg$/i, /scissorIcon/i, /homeback/i, /background/i, /\.gitkeep/];
 
@@ -17,7 +23,7 @@ const galleryImages = fs.readdirSync(galleryDir)
   }));
 ---
 
-<section class="gallery section" aria-labelledby="gallery-title" id="gallery">
+<section class="gallery section" aria-labelledby="gallery-title" id="gallery" data-full-page={fullPage}>
   <div class="container">
     <h2 id="gallery-title" class="section__title">Gallery</h2>
     
@@ -43,6 +49,12 @@ const galleryImages = fs.readdirSync(galleryDir)
         </button>
       ))}
     </div>
+
+    {!fullPage && (
+      <div class="gallery__view-all">
+        <a href="/gallery" class="btn btn--outline">View Full Gallery →</a>
+      </div>
+    )}
   </div>
 </section>
 
@@ -289,26 +301,65 @@ const galleryImages = fs.readdirSync(galleryDir)
     border-radius: var(--radius-md);
   }
   
+  .gallery__view-all {
+    display: none;
+    justify-content: center;
+    margin-top: var(--space-6);
+  }
+
   @media (max-width: 768px) {
     .gallery__grid {
       grid-template-columns: repeat(2, 1fr);
       gap: var(--space-3);
     }
-    
+
     .lightbox__nav {
       width: 40px;
       height: 40px;
       font-size: var(--text-lg);
     }
-    
+
     .lightbox__image {
       max-width: 95vw;
       max-height: 70vh;
     }
   }
-  
+
+  @media (max-width: 640px) {
+    /* Mobile carousel — only on home page (not fullPage) */
+    .gallery[data-full-page="false"] .gallery__grid {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: var(--space-3);
+      padding-bottom: var(--space-2);
+    }
+
+    .gallery[data-full-page="false"] .gallery__grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .gallery[data-full-page="false"] .gallery__item {
+      flex-shrink: 0;
+      width: 75vw;
+      scroll-snap-align: start;
+    }
+
+    .gallery[data-full-page="false"] .gallery__item:nth-child(n+6) {
+      display: none;
+    }
+
+    .gallery[data-full-page="false"] .gallery__view-all {
+      display: flex;
+    }
+  }
+
   @media (max-width: 480px) {
-    .gallery__grid {
+    /* Full grid on gallery page stays single column */
+    .gallery[data-full-page="true"] .gallery__grid {
       grid-template-columns: 1fr;
     }
   }

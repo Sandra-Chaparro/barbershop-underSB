@@ -23,7 +23,7 @@ const galleryImages = fs.readdirSync(galleryDir)
   }));
 ---
 
-<section class="gallery section" aria-labelledby="gallery-title" id="gallery" data-full-page={fullPage}>
+<section class:list={['gallery', 'section', { 'gallery--preview': !fullPage }]} aria-labelledby="gallery-title" id="gallery">
   <div class="container">
     <h2 id="gallery-title" class="section__title">Gallery</h2>
     
@@ -327,7 +327,7 @@ const galleryImages = fs.readdirSync(galleryDir)
 
   @media (max-width: 640px) {
     /* Mobile carousel — only on home page (not fullPage) */
-    .gallery[data-full-page="false"] .gallery__grid {
+    .gallery--preview .gallery__grid {
       display: flex;
       flex-direction: row;
       overflow-x: auto;
@@ -338,28 +338,28 @@ const galleryImages = fs.readdirSync(galleryDir)
       padding-bottom: var(--space-2);
     }
 
-    .gallery[data-full-page="false"] .gallery__grid::-webkit-scrollbar {
+    .gallery--preview .gallery__grid::-webkit-scrollbar {
       display: none;
     }
 
-    .gallery[data-full-page="false"] .gallery__item {
+    .gallery--preview .gallery__item {
       flex-shrink: 0;
       width: 75vw;
       scroll-snap-align: start;
     }
 
-    .gallery[data-full-page="false"] .gallery__item:nth-child(n+6) {
+    .gallery--preview .gallery__item:nth-child(n+6) {
       display: none;
     }
 
-    .gallery[data-full-page="false"] .gallery__view-all {
+    .gallery--preview .gallery__view-all {
       display: flex;
     }
   }
 
   @media (max-width: 480px) {
     /* Full grid on gallery page stays single column */
-    .gallery[data-full-page="true"] .gallery__grid {
+    .gallery:not(.gallery--preview) .gallery__grid {
       grid-template-columns: 1fr;
     }
   }

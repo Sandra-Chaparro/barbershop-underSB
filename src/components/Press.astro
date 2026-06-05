@@ -11,7 +11,7 @@ const pressItems: PressItem[] = siteData.press;
 ---
 
 <section class="press section section--alt" aria-labelledby="press-title" id="press">
-  <div class="container container--narrow">
+  <div class="container">
     <h2 id="press-title" class="section__title">What They Say</h2>
     
     <div class="press__grid">
@@ -81,7 +81,7 @@ const pressItems: PressItem[] = siteData.press;
   
   .press__text {
     font-family: var(--font-heading);
-    font-size: var(--text-lg);
+    font-size: var(--text-base);
     font-style: italic;
     line-height: var(--leading-relaxed);
     color: var(--color-secondary);
@@ -129,7 +129,7 @@ const pressItems: PressItem[] = siteData.press;
   @media (min-width: 768px) {
     .press__grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: var(--space-6);
     }
     

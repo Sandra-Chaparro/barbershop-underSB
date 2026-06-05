@@ -1,0 +1,175 @@
+---
+const faqs = [
+  {
+    question: "Do I need an appointment or do you accept walk-ins?",
+    answer: "We highly recommend booking an appointment to ensure your spot and minimize your wait time. To guarantee your preferred time, we encourage scheduling in advance through our online booking system.",
+  },
+  {
+    question: "What forms of payment do you accept?",
+    answer: "We accept cash, debit/credit cards, and some mobile payments.",
+  },
+  {
+    question: "How do I book an appointment?",
+    answer: `Select the service you are interested in from this link that takes you to the booking page: <a href="https://book.squareup.com/appointments/dfgljw70mpc8dx/location/9PV6DKFGH39H7/services" target="_blank" rel="noopener noreferrer" class="faq-link">Link to book appointment Page.</a>.`
+  },
+  {
+    question: "Can I cancel or reschedule my appointment",
+    answer: "Yes, you can contact the barber through message in the square appointment site where the appointment was created, call to the barbershop at: (469) 675-3183.",
+  },
+  {
+    question: "What measures do you take to ensure cleanliness?",
+    answer: "We prioritize the health and safety of our clients and staff by maintaining the highest standards of cleanliness. All tools and equipment are sanitized and disinfected after each use, following industry guidelines. Our workstations are cleaned regularly throughout the day, and we use disposable or single-use items whenever possible, such as neck strips and blades.",
+  },
+  {
+    question: "What happens if I'm late for my appointment?",
+    answer: "There is a grace period of 15 min, if the client doesnt arrive by that time you will need to reschedule and forfeit.",
+  }
+];
+---
+
+<section class="faq section" aria-labelledby="faq-title" id="faq">
+  <div class="container">
+    <h2 id="faq-title" class="section__title">Frequently Asked Questions</h2>
+
+    <div class="faq__list">
+      {faqs.map((item, index) => (
+        <div class="faq__item">
+          <button
+            class="faq__question"
+            aria-expanded="false"
+            aria-controls={`faq-panel-${index}`}
+            id={`faq-button-${index}`}
+          >
+            <span class="faq__question-text">{item.question}</span>
+            <span class="faq__arrow" aria-hidden="true">›</span>
+          </button>
+
+          <div
+            class="faq__answer"
+            id={`faq-panel-${index}`}
+            role="region"
+            aria-labelledby={`faq-button-${index}`}
+            aria-hidden="true"
+          >
+           <p class="faq__answer-text" set:html={item.answer} />
+           
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq__item {
+    background-color: var(--color-bg-deep);
+    border: 1px solid rgba(201, 162, 39, 0.15);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    width: 100%;
+    padding: var(--space-5) var(--space-6);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color var(--transition-fast);
+  }
+
+  .faq__question:hover {
+    background-color: rgba(201, 162, 39, 0.05);
+  }
+
+  .faq__question:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+  }
+
+  .faq__question-text {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-secondary);
+    line-height: 1.4;
+  }
+
+  .faq__arrow {
+    flex-shrink: 0;
+    font-size: var(--text-2xl);
+    color: var(--color-primary);
+    line-height: 1;
+    transform: rotate(90deg);
+    transition: transform var(--transition-normal);
+  }
+
+  .faq__question[aria-expanded="true"] .faq__arrow {
+    transform: rotate(270deg);
+  }
+
+  .faq__answer {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height var(--transition-normal), opacity var(--transition-normal);
+  }
+
+  .faq__answer[aria-hidden="false"] {
+    max-height: 300px;
+    opacity: 1;
+  }
+
+  .faq__answer-text {
+    padding: 0 var(--space-6) var(--space-5);
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-base);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 640px) {
+    .faq__question {
+      padding: var(--space-4) var(--space-4);
+    }
+
+    .faq__question-text {
+      font-size: var(--text-base);
+    }
+
+    .faq__answer-text {
+      padding: 0 var(--space-4) var(--space-4);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const questions = document.querySelectorAll('.faq__question');
+
+    questions.forEach((button) => {
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        const panelId = button.getAttribute('aria-controls');
+        const panel = document.getElementById(panelId!);
+
+        if (panel) {
+          button.setAttribute('aria-expanded', String(!expanded));
+          panel.setAttribute('aria-hidden', String(expanded));
+        }
+      });
+    });
+  });
+</script>

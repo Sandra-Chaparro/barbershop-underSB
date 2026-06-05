@@ -3,18 +3,14 @@ import siteData from '../data/site.json';
 ---
 
 <header class="header" id="top">
-  <div class="header__content">
+  <div class="header__content"></div>
+  <h1 class="header__title">{siteData.name}</h1>
+   <p class="header__established">at {siteData.atBarbershop}</p>
+  
     <a href="#top" class="header__logo" aria-label={`${siteData.name} - Return to top`}>
-      <img 
-        src="/images/logo.svg" 
-        alt={siteData.shortName} 
-        class="header__logo-img"
-        width="200"
-        height="60"
-      />
+          Book Appointment
+  
     </a>
-    <h1 class="header__title">{siteData.name}</h1>
-    <p class="header__established">at {siteData.atBarbershop}</p>
   </div>
   
   <div class="header__decoration" aria-hidden="true">

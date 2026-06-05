@@ -1,17 +1,25 @@
 ---
-import siteData from '../data/site.json';
+import fs from 'node:fs';
+import path from 'node:path';
 
-interface GalleryImage {
-  src: string;
-  alt: string;
-}
+const galleryDir = path.join(process.cwd(), 'public/images/gallery');
+const exclude = [/\.svg$/i, /scissorIcon/i, /homeback/i, /background/i, /\.gitkeep/];
 
-const galleryImages: GalleryImage[] = siteData.gallery;
+const galleryImages = fs.readdirSync(galleryDir)
+  .filter(file =>
+    /\.(jpg|jpeg|png|webp|gif)$/i.test(file) &&
+    !exclude.some(p => p.test(file))
+  )
+  .sort()
+  .map(file => ({
+    src: `/images/gallery/${file}`,
+    alt: file.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ')
+  }));
 ---
 
 <section class="gallery section" aria-labelledby="gallery-title" id="gallery">
   <div class="container">
-    <h2 id="gallery-title" class="section__title">The Space</h2>
+    <h2 id="gallery-title" class="section__title">Gallery</h2>
     
     <div class="gallery__grid">
       {galleryImages.map((image, index) => (
@@ -306,7 +314,7 @@ const galleryImages: GalleryImage[] = siteData.gallery;
   }
 </style>
 
-<script define:vars={{ galleryImages: siteData.gallery }}>
+<script define:vars={{ galleryImages }}>
   // Lightbox functionality
   document.addEventListener('DOMContentLoaded', () => {
     const lightbox = document.getElementById('lightbox');

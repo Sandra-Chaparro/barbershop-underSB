@@ -1,13 +1,13 @@
 {
   "name": "MC the Barber",
-  "shortName": "QUIET",
+  "shortName": "MC the Barber",
   "atBarbershop": "Señor Brims Barbershop",
   "phone": "(469) 675 – 3183",
-  "email": "hello@quietbar.nyc",
+  "email": "",
   "address": {
     "full": "803 E Main St. Suite E. Allen, TX 75002",
     "short": "803 E Main St. Suite E. Allen, TX 75002",
-    "crossStreets": "between Grand & Hester"
+    "crossStreets": "next to crazy tomato"
   },
   "coordinates": {
     "lat": 40.7185,
@@ -18,33 +18,33 @@
     "weekend": "Sat – 9:00 AM – 5:00 PM\nSun - Closed",
     "holiday": null
   },
-  "tagline": "A warm corner in the city. Good drinks, better company.",
+  "tagline": "Expert haircuts, clean fades, beard trims, at the best barbershop in Allen, Texas.",
   "menu": [
     {
-      "category": "Drafts",
+      "category": "Haircuts",
       "items": [
-        { "name": "House Pilsner", "description": "Crisp, clean, local", "badge": null },
-        { "name": "Brooklyn Lager", "description": "Amber Vienna-style", "badge": null },
-        { "name": "Rotating IPA", "description": "Ask your bartender", "badge": "seasonal" },
-        { "name": "Guinness", "description": "The classic stout", "badge": null }
+        { "name": "Skin Fades"},
+        { "name": "Taper Fades"},
+        { "name": "Classic Haircuts"},
+        { "name": "Kids Haircuts" }
       ]
     },
     {
-      "category": "Wines",
+      "category": "Beard Services",
       "items": [
-        { "name": "House Red", "description": "Spanish Garnacha", "badge": null },
-        { "name": "House White", "description": "Italian Pinot Grigio", "badge": null },
-        { "name": "Natural Selection", "description": "Rotating organic picks", "badge": "featured" },
-        { "name": "Prosecco", "description": "By the glass or bottle", "badge": null }
+        { "name": "Beard Trims"},
+        { "name": "Beard Shaping"},
+        { "name": "Straight Razor Shaves"},
+        { "name": "Mustache Grooming"}
       ]
     },
     {
-      "category": "Spirits",
+      "category": "Custom Designs",
       "items": [
-        { "name": "Quiet Old Fashioned", "description": "Bourbon, bitters, orange", "badge": "featured" },
-        { "name": "Negroni", "description": "Gin, Campari, sweet vermouth", "badge": null },
-        { "name": "Whiskey Sour", "description": "Rye, lemon, egg white", "badge": null },
-        { "name": "Mezcal Mule", "description": "Smoky twist on the classic", "badge": "seasonal" }
+        { "name": "Hair Designs"},
+        { "name": "Razor Patterns"},
+        { "name": "Creative Line Work"}
+       
       ]
     }
   ],
@@ -82,32 +82,46 @@
   ],
   "press": [
     {
-      "source": "The New York Times",
-      "quote": "A genuine neighborhood gem that feels like it's been here forever...",
-      "url": "https://nytimes.com/example"
+      "source": "Bryant A",
+      "quote": "Thank you so much for the excellent haircut! I truly appreciate the attention to detail and the great conversation. You have a real talent for your craft and I'll definitely be returning for my next haircut. Keep up the fantastic work!",
+      "url": null
     },
     {
-      "source": "Eater NY",
-      "quote": "Skip the velvet rope scene and find your new local at The Quiet Bar.",
-      "url": "https://eater.com/example"
+      "source": "Brian Milburn",
+      "quote": "He did an outstanding job on my beard trim. He took his time, paid attention to detail, and made sure everything was lined up perfectly. Super friendly, professional, and you can tell he takes pride in his work. I walked out looking sharp and feeling great. Top-quality service!",
+      "url": null
     },
     {
-      "source": "Time Out New York",
-      "quote": "The kind of place where strangers become regulars.",
+      "source": "Grayson Morgan",
+      "quote": "Been going here over a year now getting my haircut and he always does an excellent job! He knows his stuff and is good about making suggestions on what would work best for me. If you are in the Allen/Lucas area I highly recommend!",
+      "url": null
+    },
+    {
+      "source": "Amber Gallegos",
+      "quote": "We love the barber shop! All the barbers are great. My super picky 14 year old son only trusts Miguel with his hair!",
+      "url": null
+    },
+    {
+      "source": "kyle Connors",
+      "quote": "Awesome experience. Super clean shop and everyone is really nice. My two year old son and I go to Miguel. 100% would recommend",
+      "url": null
+    },
+    {
+      "source": "John Gallent",
+      "quote": "I have been going to see Miguel for several years now at Señor brims and don’t see myself working with anyone else to cut my hair. Great barbers, great atmosphere, and a really great haircut.",
       "url": null
     }
   ],
   "notices": [
-    "NO RESERVATIONS",
-    "CASH PREFERRED (CARD MINIMUM $20)",
-    "21+ ONLY WITH VALID ID"
+    "Walk-ins are always welcome, subject to barber availability. Appointments are recommended to guarantee your preferred time."
+  
   ],
   "social": {
-    "instagram": "https://instagram.com/quietbarnyc"
+    "instagram": "https://instagram.com/mc.thebarber"
   },
   "seo": {
-    "metaTitle": "The Quiet Bar | Neighborhood Bar in Little Italy, NYC",
-    "metaDescription": "A warm corner bar in Little Italy serving craft beers, natural wines, and classic cocktails. No reservations, just good times at 147 Mulberry Street."
+    "metaTitle": "MC the Barber - Best barbershop in Allen, TX.",
+    "metaDescription": "MC the barber in Allen, TX specializes in precision fades, taper cuts, beard trims, and kids' haircuts. Fresh cuts, clean lines. Looking for the best barber in Allen, TX? You found it at the best barbershop in Allen, Tx. "
   },
   "articles": [
     {

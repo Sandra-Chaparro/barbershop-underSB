@@ -92,7 +92,7 @@ quiet-bar/
 │   ├── favicon.svg           # Site favicon
 │   ├── fonts/                # Self-hosted fonts (optional)
 │   └── images/
-│       ├── logo.svg          # Your bar's logo
+│       ├── Padour.png          # Your bar's logo
 │       ├── gallery/          # Gallery images
 │       └── articles/         # Article cover images (optional)
 ├── src/
@@ -186,9 +186,12 @@ Set `holiday` to `null` if you don't have special holiday hours.
     {
       "category": "Drafts",
       "items": [
-        { "name": "House Lager", "description": "Crisp and refreshing", "badge": null },
-        { "name": "Seasonal IPA", "description": "Rotating selection", "badge": "seasonal" },
-        { "name": "Signature Stout", "description": "Rich and creamy", "badge": "featured" }
+        { "name": "Haircuts", "description": "Crisp and refreshing", "badge": null },
+        { "name": "Head Shave", "description": "Rotating selection", "badge": "seasonal" },
+        { "name": "Beard trim", "description": "Rich and creamy", "badge": "featured" },
+        { "name": "Beard Shave", "description": "Rich and creamy", "badge": "featured" },
+        { "name": "Designs", "description": "Rich and creamy", "badge": "featured" },
+        { "name": "Kids Haircuts", "description": "Rich and creamy", "badge": "featured" }
       ]
     },
     {
@@ -315,7 +318,7 @@ Our philosophy is simple: quality over quantity...
     {
       "slug": "welcome-to-quiet-bar",
       "title": "Welcome to The Quiet Bar",
-      "excerpt": "A warm corner in the city where good drinks meet better company...",
+      "excerpt": "Skin fades, taper fades, low fades — we do them all clean.",
       "date": "2024-01-15",
       "author": "The Quiet Bar Team",
       "coverImage": "/images/articles/welcome.jpg",

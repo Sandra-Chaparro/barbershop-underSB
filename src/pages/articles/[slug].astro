@@ -81,7 +81,7 @@ if (!Content) {
 
 const pageTitle = `${article.title} | ${siteData.name}`;
 const pageDescription = article.excerpt;
-const pageImage = article.coverImage ? `${Astro.url.origin}${article.coverImage}` : `${Astro.url.origin}/images/logo.svg`;
+const pageImage = article.coverImage ? `${Astro.url.origin}${article.coverImage}` : `${Astro.url.origin}/images/Padour.png`;
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
@@ -133,7 +133,7 @@ const pageImage = article.coverImage ? `${Astro.url.origin}${article.coverImage}
     "name": siteData.name,
     "logo": {
       "@type": "ImageObject",
-      "url": `${Astro.url.origin}/images/logo.svg`
+      "url": `${Astro.url.origin}/images/Padour.png`
     }
   }
 })} />

@@ -32,17 +32,6 @@ const osmEmbedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${coor
           </a>
         </div>
         
-        <div class="location__transit">
-          <h3 class="location__label">Getting Here</h3>
-          <ul class="location__transit-list" role="list">
-            {transit.map((item: { line: string; station: string }) => (
-              <li class="location__transit-item">
-                <span class="location__transit-line">{item.line}</span>
-                <span class="location__transit-station">{item.station}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
       
       <div class="location__map-wrapper">

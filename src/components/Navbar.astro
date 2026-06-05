@@ -4,18 +4,18 @@ import siteData from '../data/site.json';
 const navItems = [
   { label: 'Home', href: '/#top' },
   { label: 'Hours', href: '/#hours' },
-  { label: 'Menu', href: '/#menu' },
+  { label: 'Services', href: '/#services' },
   { label: 'Gallery', href: '/#gallery' },
   { label: 'Location', href: '/#location' },
   { label: 'Contact', href: '/#contact' },
-  { label: 'Articles', href: '/articles' },
+ // { label: 'Articles', href: '/articles' },
 ];
 ---
 
 <nav class="navbar" aria-label="Main navigation">
   <div class="navbar__container">
     <a href="#top" class="navbar__logo" aria-label={`${siteData.name} - Return to top`}>
-      <span class="navbar__logo-text">{siteData.shortName}</span>
+      <img src="/images/Padour.png" alt={siteData.name} class="navbar__logo-img" />
     </a>
     
     <button 
@@ -119,6 +119,12 @@ const navItems = [
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
     border-radius: var(--radius-sm);
+  }
+
+  .navbar__logo-img {
+    height: 40px;
+    width: auto;
+    display: block;
   }
   
   .navbar__toggle {

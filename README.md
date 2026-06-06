@@ -94,7 +94,6 @@ quiet-bar/
 │   └── images/
 │       ├── Padour.png          # Your bar's logo
 │       ├── gallery/          # Gallery images
-│       └── articles/         # Article cover images (optional)
 ├── src/
 │   ├── components/           # Astro components
 │   │   ├── Header.astro      # Hero section with logo
@@ -111,7 +110,6 @@ quiet-bar/
 │   │   ├── ArticleHeader.astro # Article header component
 │   │   └── ArticleContent.astro # Article content renderer
 │   ├── content/
-│   │   └── articles/         # Markdown article files
 │   ├── data/
 │   │   └── site.json         # ⭐ YOUR CONTENT GOES HERE
 │   ├── layouts/
@@ -119,9 +117,6 @@ quiet-bar/
 │   ├── pages/
 │   │   ├── index.astro       # Main page
 │   │   ├── 404.astro         # 404 error page
-│   │   └── articles/
-│   │       ├── index.astro   # Articles list page
-│   │       └── [slug].astro  # Individual article page
 │   └── styles/
 │       └── global.css        # Global styles and design tokens
 ├── astro.config.mjs          # Astro configuration
@@ -292,58 +287,6 @@ Set `url` to `null` if there's no link to the original article.
     "metaDescription": "A warm neighborhood bar serving craft beers and cocktails at 123 Main Street."
   }
 }
-```
-
-### Articles
-
-Add blog posts or news articles to your site using Markdown files:
-
-**Step 1:** Create a Markdown file in `src/content/articles/` (e.g., `the-art-of-cocktail-making.md`):
-
-```markdown
-# Welcome to The Quiet Bar
-
-Welcome to The Quiet Bar, a neighborhood gem nestled in the heart of Little Italy...
-
-## Our Philosophy
-
-Our philosophy is simple: quality over quantity...
-```
-
-**Step 2:** Add the article metadata to `src/data/site.json`:
-
-```json
-{
-  "articles": [
-    {
-      "slug": "welcome-to-quiet-bar",
-      "title": "Welcome to The Quiet Bar",
-      "excerpt": "Skin fades, taper fades, low fades — we do them all clean.",
-      "date": "2024-01-15",
-      "author": "The Quiet Bar Team",
-      "coverImage": "/images/articles/welcome.jpg",
-      "markdownFile": "the-art-of-cocktail-making.md"
-    }
-  ]
-}
-```
-
-**Article Fields:**
-- `slug` - URL-friendly identifier (e.g., "welcome-to-quiet-bar")
-- `title` - Article headline
-- `excerpt` - Short summary for listings
-- `date` - Publication date (YYYY-MM-DD format)
-- `author` - Author name (optional)
-- `coverImage` - Cover image path (optional)
-- `markdownFile` - Filename of the Markdown file in `src/content/articles/` (required)
-
-**Content Guidelines:**
-- Use Markdown syntax for formatting (headers, bold, italic, lists, links, etc.)
-- Markdown files should be placed in `src/content/articles/`
-- Images should be placed in `public/images/articles/`
-- Articles are automatically sorted by date (newest first)
-- Access articles at `/articles` (list) and `/articles/[slug]` (individual article)
-- Astro's native Markdown support handles all formatting automatically
 
 ### Robots.txt
 

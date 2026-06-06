@@ -2,7 +2,7 @@
 import siteData from '../data/site.json';
 
 const phoneHref = `tel:${siteData.phone.replace(/[^0-9+]/g, '')}`;
-const emailHref = `mailto:${siteData.email}`;
+// const emailHref = `mailto:${siteData.email}`;
 ---
 
 <section class="contact section" aria-labelledby="contact-title" id="contact">
@@ -16,11 +16,11 @@ const emailHref = `mailto:${siteData.email}`;
         <span class="contact__value">{siteData.phone}</span>
       </a>
       
-      <a href={emailHref} class="contact__card" aria-label={`Email us at ${siteData.email}`}>
+      <!-- <a href={emailHref} class="contact__card" aria-label={`Email us at ${siteData.email}`}>
         <span class="contact__icon" aria-hidden="true">✉</span>
         <span class="contact__label">Email</span>
         <span class="contact__value">{siteData.email}</span>
-      </a>
+      </a> -->
       
       {siteData.social?.instagram && (
         <a 

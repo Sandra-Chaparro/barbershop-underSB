@@ -12,17 +12,29 @@ import siteData from '../data/site.json';
   <main id="main-content">
     <Gallery fullPage={true} />
 
-    <div class="gallery-page__instagram">
-      <p class="gallery-page__instagram-text">Want to see more? Follow us on Instagram for the latest cuts and styles.</p>
-      <a
-        href={siteData.social.instagram}
-        class="btn btn--primary"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Follow MC the Barber on Instagram (opens in new tab)"
-      >
-        ◉ &nbsp;Follow on Instagram
-      </a>
+    <div class="gallery-page__cta">
+      <h2 class="gallery-page__cta-heading">Ready for a fresh cut?</h2>
+      <p class="gallery-page__cta-text">Book your appointment online or follow along on Instagram for the latest cuts and styles.</p>
+      <div class="gallery-page__cta-buttons">
+        <a
+          href="https://book.squareup.com/appointments/dfgljw70mpc8dx/location/9PV6DKFGH39H7/services"
+          class="btn btn--primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Book an appointment with MC the Barber (opens in new tab)"
+        >
+          Book Appointment
+        </a>
+        <a
+          href={siteData.social.instagram}
+          class="btn btn--outline"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Follow MC the Barber on Instagram (opens in new tab)"
+        >
+          ◉ &nbsp;Follow on Instagram
+        </a>
+      </div>
     </div>
   </main>
 
@@ -34,19 +46,38 @@ import siteData from '../data/site.json';
     scroll-margin-top: 80px;
   }
 
-  .gallery-page__instagram {
+  .gallery-page__cta {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--space-4);
-    padding: var(--space-12) var(--space-4);
+    padding: var(--space-16) var(--space-4);
     text-align: center;
+    border-top: 1px solid rgba(201, 162, 39, 0.15);
   }
 
-  .gallery-page__instagram-text {
+  .gallery-page__cta-heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+
+  .gallery-page__cta-text {
     font-family: var(--font-body);
     font-size: var(--text-base);
     color: var(--color-text-muted);
     margin: 0;
+    max-width: 480px;
+  }
+
+  .gallery-page__cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-top: var(--space-2);
   }
 </style>

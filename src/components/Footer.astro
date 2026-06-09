@@ -34,7 +34,7 @@ const currentYear = new Date().getFullYear();
         © {currentYear} {siteData.name}. All rights reserved.
       </p>
       <p class="footer__credits">
-        at {siteData.atBarbershop} · {siteData.address.short}
+        at <a href={siteData.atBarbershopUrl} target="_blank" rel="noopener noreferrer" class="footer__barbershop-link">{siteData.atBarbershop}</a> · {siteData.address.short}
       </p>
     </div>
     
@@ -204,13 +204,15 @@ const currentYear = new Date().getFullYear();
     opacity: 0.7;
   }
   
-  .footer__powered-link {
+  .footer__powered-link,
+  .footer__barbershop-link {
     color: var(--color-primary);
     text-decoration: none;
     transition: color var(--transition-fast);
   }
-  
-  .footer__powered-link:hover {
+
+  .footer__powered-link:hover,
+  .footer__barbershop-link:hover {
     color: var(--color-secondary);
   }
   

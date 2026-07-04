@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="About | MC the Barber" description="Learn about MC the Barber — over two decades of expert craftsmanship at Señor Brims Barbershop in Allen, TX.">
+  <Navbar />
+
+  <main id="main-content">
+    <section class="about">
+      <div class="about__container">
+        <h1 class="about__heading">About Me</h1>
+        <div class="about__content">
+          <p>I'm thrilled to introduce myself to you. Cutting hair isn't just a job for me; it's my true passion, and I can't imagine doing anything else.</p>
+          <p>With over two decades of experience, I have honed my skills to provide you with the highest quality grooming services.</p>
+          <p>Book your seat in the chair and let your confidence stand out. This is more than a cut; it's your signature look.</p>
+          <p>Step into a world of expert craftsmanship, tailored to suit your unique personality.</p>
+        </div>
+        <a
+          href="https://book.squareup.com/appointments/dfgljw70mpc8dx/location/9PV6DKFGH39H7/services"
+          class="btn btn--primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Book an appointment with MC the Barber (opens in new tab)"
+        >
+          Book Appointment
+        </a>
+        <img
+          src="/images/DSC_5378.jpg"
+          alt="MC the Barber"
+          class="about__image"
+        />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .about {
+    padding: var(--space-16) var(--space-4);
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .about__container {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    align-items: flex-start;
+  }
+
+  .about__heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+
+  .about__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .about__content p {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .about__container .btn {
+    align-self: center;
+  }
+
+  .about__image {
+    width: 100%;
+    border-radius: var(--radius-md);
+    display: block;
+  }
+</style>

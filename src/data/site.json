@@ -49,32 +49,6 @@
       ]
     }
   ],
-  "gallery": [
-    {
-      "src": "/images/gallery/interior-bar.jpg.svg",
-      "alt": "Warm interior view of the bar counter with vintage lighting"
-    },
-    {
-      "src": "/images/gallery/cocktail-detail.jpg.svg",
-      "alt": "Handcrafted cocktail with orange peel garnish"
-    },
-    {
-      "src": "/images/gallery/exterior-night.jpg.svg",
-      "alt": "The Quiet Bar storefront at night with warm glow"
-    },
-    {
-      "src": "/images/gallery/cozy-corner.jpg.svg",
-      "alt": "Cozy seating corner with exposed brick walls"
-    },
-    {
-      "src": "/images/gallery/draft-taps.jpg.svg",
-      "alt": "Row of brass draft beer taps"
-    },
-    {
-      "src": "/images/gallery/vinyl-corner.jpg.svg",
-      "alt": "Vintage record player and vinyl collection"
-    }
-  ],
   "press": [
     {
       "source": "Bryant A",
@@ -107,7 +81,7 @@
   "seo": {
     "metaTitle": "MC the Barber at the best barbershop in Allen, TX.",
     "metaDescription": "Allen, TX's go-to barbershop for fades, haircuts, head shaves, and beard trims.",
-    "ogImage": "https://mcthebarber.com/images/background.jpg"
+    "ogImage": "https://mcthebarber.com/images/barber-Allen-TX.jpg"
   }
 }
 

@@ -15,7 +15,7 @@ const {
 // Build LocalBusiness structured data
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "BarOrPub",
+  "@type": "Barbershop",
   "name": siteData.name,
   "description": description,
   "url": Astro.url.origin,
@@ -24,8 +24,8 @@ const structuredData = {
   "address": {
     "@type": "PostalAddress",
     "streetAddress": siteData.address.full.split(',')[0],
-    "addressLocality": "New York",
-    "addressRegion": "NY",
+    "addressLocality": "Allen",
+    "addressRegion": "TX",
     "postalCode": siteData.address.full.match(/\d{5}/)?.[0] || "",
     "addressCountry": "US"
   },
@@ -48,8 +48,6 @@ const structuredData = {
       "closes": "02:00"
     }
   ],
-  "priceRange": "$$",
-  "servesCuisine": "Bar",
   "image": `${Astro.url.origin}/images/Padour.png`
 };
 ---
@@ -83,7 +81,7 @@ const structuredData = {
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={`${Astro.url.origin}/images/background.jpg`} />
+    <meta property="og:image" content={`${Astro.url.origin}/images/barber-Allen-TX.jpg`} />
     <meta property="og:locale" content="en_US" />
     
     <!-- Additional SEO -->

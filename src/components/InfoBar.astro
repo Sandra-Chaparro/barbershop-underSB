@@ -7,10 +7,16 @@ const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
 
 <nav class="info-bar" aria-label="Quick contact information">
   <div class="info-bar__content">
-    <div class="info-bar__item info-bar__item--established">
+    <a
+      href={siteData.atBarbershopUrl}
+      class="info-bar__item info-bar__item--established"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Visit ${siteData.atBarbershop} website (opens in new tab)`}
+    >
       <span class="info-bar__label" aria-hidden="true">at</span>
       <span class="info-bar__value">{siteData.atBarbershop}</span>
-    </div>
+    </a>
     
     <a 
       href={phoneHref} 

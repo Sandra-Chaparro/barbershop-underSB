@@ -207,7 +207,13 @@ const bookingUrl = 'https://book.squareup.com/appointments/dfgljw70mpc8dx/locati
     }
 
     .header__overlay {
-      background: linear-gradient(to top, rgba(26, 26, 24, 0.98) 0%, rgba(26, 26, 24, 0.85) 40%, rgba(26, 26, 24, 0.15) 75%, rgba(26, 26, 24, 0.5) 100%);
+      background:
+        /* Top: keeps the navbar readable over the photo */
+        linear-gradient(to bottom, rgba(26, 26, 24, 0.92) 0%, rgba(26, 26, 24, 0.55) 14%, transparent 32%),
+        /* Left: same direction as the desktop hero */
+        linear-gradient(90deg, rgba(26, 26, 24, 0.85) 0%, rgba(26, 26, 24, 0.4) 55%, rgba(26, 26, 24, 0.15) 100%),
+        /* Bottom: behind the title and buttons */
+        linear-gradient(to top, rgba(26, 26, 24, 0.98) 0%, rgba(26, 26, 24, 0.85) 38%, transparent 68%);
     }
 
     .header__established {

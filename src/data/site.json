@@ -71,6 +71,12 @@
       "url": null
     }
   ],
+  "reviewsSummary": {
+    "rating": null,
+    "count": null,
+    "url": null,
+    "platform": "Google"
+  },
   "notices": [
     "Walk-ins are always welcome, subject to barber availability. Appointments are recommended to guarantee your preferred time."
   

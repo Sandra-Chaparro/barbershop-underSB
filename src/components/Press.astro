@@ -1,43 +1,81 @@
 ---
 import siteData from '../data/site.json';
+import Icon from './Icon.astro';
 
+/**
+ * Optional fields in site.json:
+ *   press[].rating          -> number of stars shown on that review (e.g. 5)
+ *   reviewsSummary.rating   -> overall rating, e.g. 5.0
+ *   reviewsSummary.count    -> number of reviews, e.g. 120
+ *   reviewsSummary.url      -> link to the Google reviews page
+ * Nothing star-related is shown unless these are filled in.
+ */
 interface PressItem {
   source: string;
   quote: string;
   url: string | null;
+  rating?: number | null;
 }
 
-const pressItems: PressItem[] = siteData.press;
+interface ReviewsSummary {
+  rating: number | null;
+  count: number | null;
+  url: string | null;
+  platform?: string;
+}
+
+const pressItems = siteData.press as PressItem[];
+const summary = (siteData as { reviewsSummary?: ReviewsSummary }).reviewsSummary;
+const initials = (name: string) =>
+  name.split(/\s+/).map((part) => part[0]).join('').slice(0, 2).toUpperCase();
 ---
 
 <section class="press section section--alt" aria-labelledby="press-title" id="press">
   <div class="container">
     <h2 id="press-title" class="section__title">What They Say</h2>
-    
-    <div class="press__grid">
+
+    {summary?.rating && (
+      <a
+        class="press__summary"
+        href={summary.url ?? undefined}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="press__summary-score">{summary.rating.toFixed(1)}</span>
+        <span class="press__stars" aria-hidden="true">
+          {Array.from({ length: 5 }, () => <Icon name="star" />)}
+        </span>
+        <span class="press__summary-text">
+          {summary.count ? `${summary.count} reviews` : 'Reviews'} on {summary.platform ?? 'Google'}
+          <span class="sr-only">(opens in new tab)</span>
+        </span>
+      </a>
+    )}
+
+    <div class="press__track" tabindex="0" aria-label="Customer reviews, scroll horizontally on small screens">
       {pressItems.map((item) => (
         <article class="press__item">
+          {item.rating && (
+            <span class="press__stars" role="img" aria-label={`${item.rating} out of 5 stars`}>
+              {Array.from({ length: item.rating }, () => <Icon name="star" />)}
+            </span>
+          )}
           <blockquote class="press__quote">
             <p class="press__text">{item.quote}</p>
-            <footer class="press__footer">
-              <cite class="press__source">
-                {item.url ? (
-                  <a 
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="press__link"
-                  >
-                    — {item.source}
-                    <span class="sr-only">(opens in new tab)</span>
-                    <span class="press__external-icon" aria-hidden="true">↗</span>
-                  </a>
-                ) : (
-                  <span>— {item.source}</span>
-                )}
-              </cite>
-            </footer>
           </blockquote>
+          <footer class="press__footer">
+            <span class="press__avatar" aria-hidden="true">{initials(item.source)}</span>
+            <cite class="press__source">
+              {item.url ? (
+                <a href={item.url} target="_blank" rel="noopener noreferrer" class="press__link">
+                  {item.source}
+                  <span class="sr-only">(opens in new tab)</span>
+                </a>
+              ) : (
+                item.source
+              )}
+            </cite>
+          </footer>
         </article>
       ))}
     </div>
@@ -45,118 +83,159 @@ const pressItems: PressItem[] = siteData.press;
 </section>
 
 <style>
-  .press__grid {
+  .press__summary {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-8);
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    width: fit-content;
+    margin: calc(var(--space-6) * -1) auto var(--space-10);
+    padding: var(--space-2) var(--space-5);
+    border: 1px solid rgba(201, 162, 39, 0.3);
+    border-radius: 999px;
+    color: var(--color-text);
+    background: var(--color-bg-deep);
   }
-  
+
+  .press__summary:hover {
+    border-color: var(--color-primary);
+    color: var(--color-text);
+  }
+
+  .press__summary-score {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-secondary);
+  }
+
+  .press__summary-text {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .press__stars {
+    display: inline-flex;
+    gap: 2px;
+    color: var(--color-primary);
+  }
+
+  .press__track {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .press__track:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+    border-radius: var(--radius-lg);
+  }
+
   .press__item {
     position: relative;
-    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-8) var(--space-6) var(--space-6);
     background-color: var(--color-bg-deep);
-    border-left: 3px solid var(--color-primary);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    border: 1px solid rgba(201, 162, 39, 0.12);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
   }
-  
+
   .press__item::before {
-    content: '"';
+    content: '\201C';
     position: absolute;
-    top: var(--space-2);
-    left: var(--space-4);
+    top: -0.15em;
+    right: var(--space-4);
     font-family: var(--font-heading);
-    font-size: 4rem;
+    font-size: 7rem;
     line-height: 1;
     color: var(--color-primary);
-    opacity: 0.15;
+    opacity: 0.12;
+    pointer-events: none;
   }
-  
+
   .press__quote {
+    flex: 1;
     margin: 0;
     padding: 0;
     border: none;
-    position: relative;
-    z-index: 1;
   }
-  
+
   .press__text {
     font-family: var(--font-heading);
-    font-size: var(--text-base);
+    font-size: var(--text-lg);
     font-style: italic;
     line-height: var(--leading-relaxed);
     color: var(--color-secondary);
-    margin-bottom: var(--space-4);
+    margin: 0;
   }
-  
+
   .press__footer {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    gap: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid rgba(232, 228, 220, 0.08);
   }
-  
+
+  .press__avatar {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-text-dark);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  }
+
   .press__source {
-    font-family: var(--font-body);
     font-style: normal;
     font-size: var(--text-sm);
     font-weight: 600;
-    color: var(--color-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
   }
-  
+
   .press__link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-1);
-    color: var(--color-text-muted);
-    text-decoration: none;
-    transition: color var(--transition-fast);
+    color: inherit;
   }
-  
+
   .press__link:hover {
     color: var(--color-primary);
   }
-  
-  .press__link:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-  }
-  
-  .press__external-icon {
-    font-size: var(--text-xs);
-    opacity: 0.7;
-  }
-  
-  @media (min-width: 768px) {
-    .press__grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-6);
-    }
-    
-    .press__item {
+
+  /* Swipeable carousel on phones */
+  @media (max-width: 767px) {
+    .press__track {
       display: flex;
-      flex-direction: column;
+      gap: var(--space-4);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: var(--space-4);
+      margin-inline: calc(var(--space-4) * -1);
+      padding: 0 var(--space-4) var(--space-4);
+      scrollbar-width: none;
     }
-    
-    .press__quote {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
+
+    .press__track::-webkit-scrollbar {
+      display: none;
     }
-    
-    .press__text {
-      flex: 1;
-    }
-  }
-  
-  @media (max-width: 640px) {
+
     .press__item {
-      padding: var(--space-3);
+      flex: 0 0 85%;
+      scroll-snap-align: start;
+      padding: var(--space-6) var(--space-5) var(--space-5);
     }
 
     .press__text {
-      font-size: var(--text-sm);
+      font-size: var(--text-base);
     }
   }
 </style>
-

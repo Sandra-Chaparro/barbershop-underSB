@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 import siteData from '../data/site.json';
 
 const phoneHref = `tel:${siteData.phone.replace(/[^0-9+]/g, '')}`;
@@ -11,13 +12,13 @@ const phoneHref = `tel:${siteData.phone.replace(/[^0-9+]/g, '')}`;
     
     <div class="contact__grid">
       <a href={phoneHref} class="contact__card" aria-label={`Call us at ${siteData.phone}`}>
-        <span class="contact__icon" aria-hidden="true">☎</span>
+        <Icon name="phone" class="contact__icon" />
         <span class="contact__label">Phone</span>
         <span class="contact__value">{siteData.phone}</span>
       </a>
       
       <!-- <a href={emailHref} class="contact__card" aria-label={`Email us at ${siteData.email}`}>
-        <span class="contact__icon" aria-hidden="true">✉</span>
+        <Icon name="mail" class="contact__icon" />
         <span class="contact__label">Email</span>
         <span class="contact__value">{siteData.email}</span>
       </a> -->

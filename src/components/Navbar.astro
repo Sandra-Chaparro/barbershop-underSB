@@ -1,10 +1,12 @@
 ---
 import siteData from '../data/site.json';
+import Icon from './Icon.astro';
 
 const navItems = [
-  { label: 'Hours', href: '/#hours' },
   { label: 'Services', href: '/#services' },
   { label: 'Gallery', href: '/#gallery' },
+  { label: 'Reviews', href: '/#press' },
+  { label: 'Hours', href: '/#hours' },
   { label: 'Location', href: '/#location' },
   { label: 'Contact', href: '/#contact' },
   { label: 'FAQ', href: '/#faq' },
@@ -13,7 +15,7 @@ const navItems = [
 ];
 ---
 
-<nav class="navbar" aria-label="Main navigation">
+<nav class="navbar" id="navbar" aria-label="Main navigation">
   <div class="navbar__container">
     <a href="/#top" class="navbar__logo" aria-label={`${siteData.name} - Return to top`}>
       <img src="/images/Padour.png" alt={siteData.name} class="navbar__logo-img" />
@@ -25,7 +27,8 @@ const navItems = [
       aria-expanded="false"
       id="navbar-toggle"
     >
-      <span class="navbar__toggle-icon" aria-hidden="true">☰</span>
+      <span class="navbar__toggle-icon navbar__toggle-icon--open"><Icon name="menu" size="22" /></span>
+      <span class="navbar__toggle-icon navbar__toggle-icon--close"><Icon name="close" size="22" /></span>
     </button>
     
     <ul class="navbar__menu" id="navbar-menu">
@@ -49,6 +52,14 @@ const navItems = [
   const toggle = document.getElementById('navbar-toggle');
   const menu = document.getElementById('navbar-menu');
   
+  // Solid background once the page is scrolled (transparent over the hero)
+  const navbar = document.getElementById('navbar');
+  if (navbar) {
+    const onScroll = () => navbar.classList.toggle('navbar--scrolled', window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
   if (toggle && menu) {
     toggle.addEventListener('click', () => {
       const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
@@ -84,10 +95,20 @@ const navItems = [
     position: sticky;
     top: 0;
     z-index: var(--z-sticky);
-    background-color: var(--color-bg-deep);
-    border-bottom: 1px solid rgba(201, 162, 39, 0.2);
-    backdrop-filter: blur(10px);
-    background-color: rgba(26, 26, 24, 0.95);
+    border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+    background-color: rgba(26, 26, 24, 0.8);
+    transition: background-color var(--transition-normal), border-color var(--transition-normal),
+      backdrop-filter var(--transition-normal);
+  }
+
+  /* On pages with the photo hero, start fully transparent until scrolled */
+  :global(body:has(.header)) .navbar:not(.navbar--scrolled):not(:has(.navbar__menu--open)) {
+    background-color: transparent;
+    border-bottom-color: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
   
   .navbar__container {
@@ -130,15 +151,14 @@ const navItems = [
   
   .navbar__toggle {
     display: none;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: 1px solid var(--color-primary);
-    border-radius: var(--radius-sm);
-    color: var(--color-primary);
+    width: 42px;
+    height: 42px;
+    background: rgba(26, 26, 24, 0.4);
+    border: 1px solid rgba(201, 162, 39, 0.5);
+    border-radius: 999px;
+    color: var(--color-secondary);
     cursor: pointer;
     transition: all var(--transition-fast);
   }
@@ -161,8 +181,16 @@ const navItems = [
   }
   
   .navbar__toggle-icon {
-    font-size: var(--text-xl);
-    line-height: 1;
+    display: flex;
+  }
+
+  .navbar__toggle-icon--close,
+  .navbar__toggle--active .navbar__toggle-icon--open {
+    display: none;
+  }
+
+  .navbar__toggle--active .navbar__toggle-icon--close {
+    display: flex;
   }
   
   .navbar__menu {
@@ -180,8 +208,8 @@ const navItems = [
   
   .navbar__link {
     display: block;
-    padding: var(--space-2) var(--space-4);
-    font-size: var(--text-sm);
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-xs);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -194,9 +222,9 @@ const navItems = [
   .navbar__link::after {
     content: '';
     position: absolute;
-    left: var(--space-4);
+    left: var(--space-3);
     bottom: 0;
-    width: calc(100% - var(--space-8));
+    width: calc(100% - var(--space-6));
     height: 2px;
     background-color: var(--color-primary);
     transform: scaleX(0);
@@ -218,16 +246,6 @@ const navItems = [
     border-radius: var(--radius-sm);
   }
   
-  /* Active link styling for current page sections */
-  .navbar__link[href="#top"]:target,
-  .navbar__link[href="#hours"]:target,
-  .navbar__link[href="#menu"]:target,
-  .navbar__link[href="#gallery"]:target,
-  .navbar__link[href="#location"]:target,
-  .navbar__link[href="#contact"]:target {
-    color: var(--color-primary);
-  }
-  
   @media (max-width: 768px) {
     .navbar__toggle {
       display: flex;
@@ -240,7 +258,7 @@ const navItems = [
       right: 0;
       flex-direction: column;
       align-items: stretch;
-      background-color: var(--color-bg-deep);
+      background-color: rgba(26, 26, 24, 0.97);
       border-top: 1px solid rgba(201, 162, 39, 0.2);
       max-height: 0;
       overflow: hidden;
@@ -264,6 +282,7 @@ const navItems = [
     .navbar__link {
       padding: var(--space-4);
       width: 100%;
+      font-size: var(--text-sm);
     }
     
     .navbar__link::after {

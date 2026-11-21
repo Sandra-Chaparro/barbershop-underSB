@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 import siteData from '../data/site.json';
 
 const currentYear = new Date().getFullYear();
@@ -23,7 +24,7 @@ const currentYear = new Date().getFullYear();
       
       <div class="footer__back-to-top">
         <a href="/#top" class="footer__top-btn" aria-label="Back to top">
-          <span class="footer__top-arrow" aria-hidden="true">↑</span>
+          <span class="footer__top-arrow"><Icon name="arrow-up" /></span>
           <span class="footer__top-text">Top</span>
         </a>
       </div>
